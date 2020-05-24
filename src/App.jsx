@@ -5,6 +5,7 @@ import Layout from "./components/Layout";
 import Content from "./components/Content";
 import ProductItem from "./components/ProductItem";
 import SideBar from "./components/SideBar";
+import Login from "./components/Login"
 
 const products = [
   {
@@ -37,18 +38,49 @@ function App() {
   return (
     <Layout>
       <Content>
-        <ProductItem 
-        
-            imageURL={products[0].imageURL}
-            type={products[0].type}
-            name={products[0].name}
-            price={products[0].price}
-            discountPrice={products[0].discountPrice}
-            
-            
+      <ProductItem 
+        imageURL={products[0].imageURL}
+        type={products[0].type}
+        name={products[0].name}
+        price={products[0].price}
+        discountPrice={products[0].discountPrice}
         />
+        <ProductItem 
+        imageURL={products[1].imageURL}
+        type={products[1].type}
+        name={products[1].name}
+        price={products[1].price}
+        discountPrice={products[1].discountPrice}
+        />
+        <ProductItem 
+        imageURL={products[2].imageURL}
+        type={products[2].type}
+        name={products[2].name}
+        price={products[2].price}
+        discountPrice={products[2].discountPrice}
+        />
+            {/* {products.map(e =>(
+                <div>
+                    imageURL={e.imageURL}
+                    type={e.type}
+                    name={e.name}
+                    price={e.price}
+                    discountPrice={e.discountPrice}
+                </div>))} */}
+        {/* </ProductItem> */}
+        {products.map(e=>
+            <ProductItem
+            imageURL={e.imageURL}
+            type={e.type}
+            name={e.name}
+            price={e.price}
+            discountPrice={e.discountPrice}
+            />
+            )}
       </Content>
+      
       <SideBar />
+      <Login/>
     </Layout>
   );
 }

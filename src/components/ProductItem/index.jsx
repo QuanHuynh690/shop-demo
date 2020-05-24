@@ -22,7 +22,7 @@ function ProductItem(props) {
             <a href="#">{props.type}</a>
           </div>
           <h4>
-            <a href="#">{props.name}</a>
+            <a target="_bank" href={`https://www.google.com/search?sxsrf=ALeKk00gs7jBCjI2HQ48MKqb1J96k19jjA%3A1590331072432&source=hp&ei=wIbKXpCbGI790gTBy7nIDA&q=${props.name}&oq=${props.name}`}>{props.name}</a>
           </h4>
           <div className="product-meta">
             <div className="pro-price">
