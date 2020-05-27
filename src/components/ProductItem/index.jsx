@@ -1,6 +1,18 @@
 import React from "react";
-
+/*
+1. lấy đc sự kiện click của icon add to cart
+2. tạo 1 array cho những sự kiện trong cart
+3. đưa sp mà các bạn đang click ra ngoài vào productsInCart
+4. Bởi vì productsInCart sẽ thay đổi nên mình tạo productsInCart bằng cách sử dụng useState
+5. Truyền productsInCart vào Cart để lấy danh sách sản phẩm và hiển thị trong Cart
+*/ 
 function ProductItem(props) {
+  
+  const onAddToCart = (props) => {
+    console.log(props)
+    
+
+  }
   return (
     <div className="col-xl-4 col-lg-6 col-md-6">
       <div className="product-wrapper mb-50">
@@ -9,7 +21,7 @@ function ProductItem(props) {
             <img src={props.imageURL} alt="" />
           </a>
           <div className="product-action text-center">
-            <a href="#" title="Shopping Cart">
+            <a title="Shopping Cart" onClick={onAddToCart}>
               <i className="fas fa-shopping-cart" />
             </a>
             <a href="#" title={props.title}>
@@ -17,7 +29,7 @@ function ProductItem(props) {
             </a>
           </div>
         </div>
-        <div className="product-content pr-0">
+        <div className="product-content pr-0  ">
           <div className="pro-cat mb-10">
             <a href="#">{props.type}</a>
           </div>
