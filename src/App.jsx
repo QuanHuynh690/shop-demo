@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import Layout from "./components/Layout";
@@ -11,11 +11,23 @@ import dataProduct from "./product.json"
 
 
 function App() {
+
+  const [sortAZ, setSortAZ] = useState(dataProduct.data)
+  const AZ = () => {
+  let newProducts=[...sortAZ].sort(function (a, b) {
+      return a.name.localeCompare(b.name)
+      setSortAZ(newProducts)
+    }
+    )
+  }
+  
+  
   return (
-    <Layout>
-      <Content> 
-        {dataProduct.data.map(e=>
-            <ProductItem {...e} imageURL={e.image}/>)}
+
+    <Layout >
+      <Content>
+        {sortAZ.map(e =>
+          <ProductItem {...e} />)}
         {/* {products.map(e=>
             <ProductItem
             imageURL={e.imageURL}
@@ -26,9 +38,11 @@ function App() {
             />
             )} */}
       </Content>
-      
-      <SideBar />
-      <Login/>
+
+      <SideBar onSortAZ={AZ} 
+
+      />
+
     </Layout>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import Cart from '../Cart'
-import Login from "../Login"
+
 function Layout(props) {
   return (
     <>
@@ -13,7 +13,7 @@ function Layout(props) {
                   <a href="#"><img src="./assets/logo_shop.png" alt="" /></a>
                 </div>
                 <div className="category-menu">
-                   <h4>Category</h4>
+                  <h4>Category</h4>
                   <ul>
                     <li><a href="#"><i className="fas fa-shopping-cart" /> Table lamp</a></li>
                     <li><a href="#"><i className="fas fa-shopping-cart" /> Furniture</a></li>
@@ -60,7 +60,7 @@ function Layout(props) {
                       <a className="search-btn nav-search search-trigger" href="#"><i className="fas fa-search" /></a>
                     </li>
                     <li className="login-btn"><a href="#"><i className="far fa-user" /></a></li>
-                    <Cart/>
+                    <Cart data={props.productsInCart} />
                   </ul>
                 </div>
               </div>
@@ -72,15 +72,8 @@ function Layout(props) {
         </div>
       </header>
     {/* Body */}
-    <main>
-      <section className="shop-area pt-150 pb-100">
-          <div className="container">
-            <div className="row">
-              {props.children}
-            </div>
-          </div>
-        </section>
-    </main>
+    {props.children}
+    
     <footer className="footer-area pl-100 pr-100">
         <div className="footer-area box-90 pt-100 pb-60" data-background="img/bg/footer.jpg" style={{backgroundImage: 'url("img/bg/footer.jpg")'}}>
           <div className="container">

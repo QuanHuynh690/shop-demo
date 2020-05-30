@@ -1,15 +1,27 @@
-import React from "react";
+import React, {useState} from "react";
 
-function SideBar() {
+function SideBar(props) {
+  const sortAToZ=()=>{ 
+          return props.onSortAZ(props)
+  }
+  const [search,setSearch]=useState("")
+  const inputSearch = event => {
+          setSearch(event.target.value)
+          // console.log(event.target.value)
+  }
+  const submit = e =>{
+    e.preventDefault();
+    console.log(search)
+  }
   return (
     <>
       {/*SideBar */}
       <div className="col-xl-3 col-lg-4">
         <div className="sidebar-shop">
           <div className="shop-widget">
-            <h3 className="shop-title">Search by</h3>
-            <form action="#" className="shop-search">
-              <input type="text" placeholder="Your keyword...." />
+            <h3 className="shop-title" >Search by</h3>
+            <form action="#" className="shop-search" onSubmit={submit}>
+              <input type="text" placeholder="Your keyword...." onChange={inputSearch} />
               <button>
                 <i className="fa fa-search" />
               </button>
@@ -27,7 +39,7 @@ function SideBar() {
             <h3 className="shop-title">SHOP BY</h3>
             <ul className="shop-link">
               <li>
-                <a href="#">Name: A-Z</a>
+                <a href="#"onClick={sortAToZ}>Name: A-Z</a>
               </li>
               <li>
                 <a href="#">Name: Z-A</a>

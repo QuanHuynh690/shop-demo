@@ -7,18 +7,20 @@ import React from "react";
 5. Truyền productsInCart vào Cart để lấy danh sách sản phẩm và hiển thị trong Cart
 */ 
 function ProductItem(props) {
+  // console.log(props.image)
   
-  const onAddToCart = (props) => {
-    console.log(props)
+  const onAddToCart = (product) => {
+    console.log(product)
     
 
   }
+  
   return (
     <div className="col-xl-4 col-lg-6 col-md-6">
       <div className="product-wrapper mb-50">
         <div className="product-img mb-25">
           <a href="#">
-            <img src={props.imageURL} alt="" />
+            <img src={props.image} alt="" />
           </a>
           <div className="product-action text-center">
             <a title="Shopping Cart" onClick={onAddToCart}>
