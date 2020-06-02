@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router-dom'
 /*
 1. lấy đc sự kiện click của icon add to cart
 2. tạo 1 array cho những sự kiện trong cart
@@ -26,9 +27,9 @@ function ProductItem(props) {
             <a title="Shopping Cart" onClick={onAddToCart}>
               <i className="fas fa-shopping-cart" />
             </a>
-            <a href="#" title={props.title}>
+            <Link to={`/productdetail`} title={props.title}>
               <i className="fas fa-search" />
-            </a>
+            </Link>
           </div>
         </div>
         <div className="product-content pr-0  ">

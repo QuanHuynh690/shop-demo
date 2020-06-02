@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router-dom'
 
 function Login (props) {
       return (
@@ -10,7 +11,7 @@ function Login (props) {
                   <div className="breadcrumb-text text-center">
                     <h1>Login</h1>
                     <ul className="breadcrumb-menu">
-                      <li><a href="index.html">home</a></li>
+                      <li><Link to={`/`}>home</Link></li>
                       <li><span>Login</span></li>
                     </ul>
                   </div>

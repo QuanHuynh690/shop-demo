@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import "./Main.css";
 import Layout from "../../components/Layout";
 import Content from "../../components/Content";
 import ProductItem from "../../components/ProductItem";
 import SideBar from "../../components/SideBar";
-import dataProduct from '../../product.json'
-
+import dataProduct from '../../product.json';
+import {ThemeContext} from '../..';
 
 function Main() {
+  const value = useContext(ThemeContext)
   const [products, setProducts] = useState(dataProduct.data)
   const [productsInCart, setProductsInCart] = useState([])
   
@@ -39,9 +40,10 @@ function Main() {
     }
     )
   }
+  
   return (
     <Layout productsInCart={productsInCart}>
-      <main>
+      <main style={{backgroundColor: value}}>/*dấu ngoặc nhọn đầu tiên là của biến trong react, dấu thứ 2 là của object do dùng css inline */
       <section className="shop-area pt-150 pb-100">
           <div className="container">
             <div className="row">
@@ -59,7 +61,7 @@ function Main() {
                {sortAZ.map(e =>
                 <ProductItem {...e} />)}
             </Content>
-            <SideBar onSortAZ={AZ}/>
+            <SideBar onSortAZ={AZ} />
             </div>
           </div>
         </section>
