@@ -7,6 +7,7 @@ import Login from './pages/Login'
 import * as serviceWorker from './serviceWorker';
 import ProductDetail from './pages/ProductDetail'
 import {BrowserRouter as Router, Switch,Route,Link} from 'react-router-dom'
+import dataProduct from './product.json';
 export const ThemeContext = React.createContext('light');
 ReactDOM.render(
   <React.StrictMode>
@@ -25,9 +26,23 @@ ReactDOM.render(
             <Register />
           </Route>
 
-          <Route exact path='/productdetail'>
+          <Route exact path='/productdetail/:id'>
             <ProductDetail />
           </Route>
+
+          {/* <Route 
+            exact 
+              path='/productdetail/:id' 
+              render={(props)=>{
+                console.log("props.match",props.match.params.id)
+                const product = dataProduct.data.find(elm=> elm.id == props.match.params.id)
+                console.log('product',product)
+                if (!product){
+                  return <h1>404 KO TIM THAY SAN PHAM</h1>
+                }
+                return <ProductDetail name={product.name} price={product.price} priceMax={product.priceMax}/>}
+            } 
+          /> */}
 
           <Route path='*'>
             <div>404</div>

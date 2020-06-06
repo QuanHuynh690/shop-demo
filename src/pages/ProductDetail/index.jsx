@@ -1,6 +1,28 @@
 import React from 'react';
 import Layout from '../../components/Layout';
-function ProductDetail () {
+import dataProduct from '../../product.json'
+import {withRouter, useParams} from "react-router-dom";
+function ProductDetail (props) {
+// dùng useParams()
+  const params=useParams()
+  console.log("ProductDetail Props", props)
+
+  console.log("props.match", params.id)
+  const product = dataProduct.data.find(elm => String(elm.id) === params.id)
+  console.log(product, "product")
+  if(!product) {
+    return <h1>404 ko tim thay san pham</h1>
+  }
+  // dùng withRouter
+  // console.log("ProductDetail Props", props)
+
+  // console.log("props.match", props.match.params.id)
+  // const product = dataProduct.data.find(elm => String(elm.id) === props.match.params.id)
+  // console.log(product, "product")
+  // if(!product) {
+  //   return <h1>404 ko tim thay san pham</h1>
+  // }
+
     return (
             <Layout productsInCart={[]}>
                 <main>
@@ -30,7 +52,7 @@ function ProductDetail () {
                             <div className="tab-content" id="myTabContentpro">
                               <div className="tab-pane fade show active" id="home" role="tabpanel">
                                 <div className="product-large-img">
-                                  <img src="img/product/pro1.jpg" alt="" />
+                                  <img src={product.image} alt="" />
                                 </div>
                               </div>
                               <div className="tab-pane fade" id="profile" role="tabpanel">
@@ -40,7 +62,7 @@ function ProductDetail () {
                               </div>
                               <div className="tab-pane fade" id="profile1" role="tabpanel">
                                 <div className="product-large-img">
-                                  <img src="img/product/pro3.jpg" alt="" />
+                                  <img src={product.image} alt="" />
                                 </div>
                               </div>
                             </div>
@@ -48,7 +70,7 @@ function ProductDetail () {
                           <div className="shop-thumb-tab mb-30">
                             <ul className="nav" id="myTab2" role="tablist">
                               <li className="nav-item">
-                                <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-selected="true"><img src="img/product/pro1.jpg" alt="" /> </a>
+                                <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-selected="true"><img src={product.image} alt="" /> </a>
                               </li>
                               <li className="nav-item">
                                 <a className="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-selected="false"><img src="img/product/pro2.jpg" alt="" /></a>
@@ -65,10 +87,10 @@ function ProductDetail () {
                               <a href="#">decor,</a>
                               <a href="#">furniture</a>
                             </div>
-                            <h2 className="pro-details-title mb-15">Limonda Women Winter Cloth</h2>
+                            <h2 className="pro-details-title mb-15">{product.name}</h2>
                             <div className="details-price mb-20">
-                              <span>$119.00</span>
-                              <span className="old-price">$246.00</span>
+                              <span>{product.price}</span>
+                              <span className="old-price">{product.priceMax}</span>
                             </div>
                             <div className="product-variant">
                               <div className="product-desc variant-item">
@@ -454,4 +476,4 @@ function ProductDetail () {
     )
 }
 
-export default ProductDetail;
+export default withRouter(ProductDetail);

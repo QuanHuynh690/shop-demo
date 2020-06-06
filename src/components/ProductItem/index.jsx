@@ -27,7 +27,7 @@ function ProductItem(props) {
             <a title="Shopping Cart" onClick={onAddToCart}>
               <i className="fas fa-shopping-cart" />
             </a>
-            <Link to={`/productdetail`} title={props.title}>
+            <Link to={`/productdetail/${props.id}`} title={props.title}>
               <i className="fas fa-search" />
             </Link>
           </div>
