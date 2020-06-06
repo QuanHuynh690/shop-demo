@@ -1,33 +1,49 @@
 import React,{useState} from 'react'
 import Layout from '../../components/Layout';
 import {Link} from 'react-router-dom'
-
+import axios from 'axios'
 
 function Register() {
     const [register,setRegister]=useState({
-        Fullname :"",
-        Email: "",
-        Password:""
+        fullname :"",
+        email: "",
+        password:""
     })
-    const inputFullName = event => {
+    const input = event => {
             setRegister({
                 ...register,
-                Fullname: event.target.value})
+                [event.target.name]: event.target.value})
             // console.log(event.target.value)
     }
-    const inputEmail = event => {
-        setRegister({
-           ...register,
-           Email: event.target.value})
-}
-    const inputPassword = event => {
-        setRegister({
-                ...register,
-                Password: event.target.value})
-    }
+//     const inputEmail = event => {
+//         setRegister({
+//            ...register,
+//            Email: event.target.value})
+// }
+//     const inputPassword = event => {
+//         setRegister({
+//                 ...register,
+//                 Password: event.target.value})
+//     }
     const submitRegister = e =>{
       e.preventDefault();
       console.log(register)
+      register1(register)
+    }
+
+    const register1 = async (data) => {
+      try {
+        const result = await axios({
+          method: "POST",
+          url: "https://min-shop.herokuapp.com/rest/user/signUp",
+          data
+        });
+    
+        console.log(result.data);
+        localStorage.setItem("token", result.data.accessToken)
+      } catch (error) {
+        console.log(error.message);
+      }
     }
   return (
     <Layout productsInCart={[]}>
@@ -58,11 +74,11 @@ function Register() {
                   <h3 className="text-center mb-60">Signup From Here</h3>
                   <form onSubmit={submitRegister}>
                     <label htmlFor="name">Fullname <span>**</span></label>
-                    <input id="name" type="text" placeholder="Enter Username or Email address..." onChange={inputFullName} />
+                    <input name="fullname"id="name" type="text" placeholder="Enter Username or Email address..." onChange={input} />
                     <label htmlFor="email-id">Email Address <span>**</span></label>
-                    <input id="email-id" type="text" placeholder="Enter Username or Email address..." onChange={inputEmail}/>
+                    <input name="email" id="email-id" type="text" placeholder="Enter Username or Email address..." onChange={input}/>
                     <label htmlFor="pass">Password <span>**</span></label>
-                    <input id="pass" type="password" placeholder="Enter password..." onChange={inputPassword}/>
+                    <input name="password" id="pass" type="password" placeholder="Enter password..." onChange={input}/>
                     <div className="mt-10" />
                     <button className="btn theme-btn-2 w-100">Register Now</button>
                     <div className="or-divide"><span>or</span></div>

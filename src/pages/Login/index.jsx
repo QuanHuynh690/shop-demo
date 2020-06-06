@@ -2,27 +2,41 @@ import React from 'react'
 import Layout from '../../components/Layout'
 import { useState } from 'react'
 import {Link} from 'react-router-dom'
-
+import axios from 'axios'
 
 function Login() {
 const [login,setLogin]=useState({
-    Username :"",
-    Password:""
+    email :"",
+    password:""
 })
-const inputUserName = event => {
+const inputLogin = event => {
         setLogin({
             ...login,
-            Username: event.target.value})
+           [event.target.name]: event.target.value})
         // console.log(event.target.value)
 }
-const inputPassword = event => {
-         setLogin({
-            ...login,
-            Password: event.target.value})
-}
+
 const submit = e =>{
   e.preventDefault();
-  console.log(login)
+  console.log(login);
+  login1(login)
+}
+const [error,setError]=useState('')
+const login1 = async (data) => {
+  try {
+    const result = await axios({
+      method: "POST",
+      url: "https://min-shop.herokuapp.com/rest/user/signIn",
+      data
+    });
+
+    console.log(result.data);
+    localStorage.setItem("token", result.data.accessToken)
+  } catch (error) {
+    console.log(error.response.data.message);
+    setError(error.response.data.message);
+
+  }
 }
   return (
     <Layout productsInCart={[]}>
@@ -52,10 +66,11 @@ const submit = e =>{
                 <div className="basic-login">
                   <h3 className="text-center mb-60">Login From Here</h3>
                   <form onSubmit={submit}>
+                    <p className="text-danger">{error}</p>
                     <label htmlFor="name">Email Address <span>**</span></label>
-                    <input id="name" type="text" placeholder="Enter Username or Email address..." onChange={inputUserName}/>
+                    <input name="email" id="name" type="text" placeholder="Enter Username or Email address..." onChange={inputLogin}/>
                     <label htmlFor="pass">Password <span>**</span></label>
-                    <input id="pass" type="password" placeholder="Enter password..." onChange={inputPassword} />
+                    <input name="password" id="pass" type="password" placeholder="Enter password..." onChange={inputLogin} />
                     <div className="login-action mb-20 fix">
                       <span className="log-rem f-left">
                         <input id="remember" type="checkbox" />

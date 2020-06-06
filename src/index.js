@@ -1,20 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Main from './pages/Main';
-import Register from './pages/Register'
-import Login from './pages/Login'
+// import Main from './pages/Main';
+// import Register from './pages/Register'
+// import Login from './pages/Login'
 import * as serviceWorker from './serviceWorker';
-import ProductDetail from './pages/ProductDetail'
+// import ProductDetail from './pages/ProductDetail'
 import {BrowserRouter as Router, Switch,Route,Link} from 'react-router-dom'
 import dataProduct from './product.json';
+import LoadingComponent from './components/LoadingComponent'
 export const ThemeContext = React.createContext('light');
+const MainPage= React.lazy(()=> import('./pages/Main'));
+const LoginPage= React.lazy(()=> import('./pages/Login'));
+const RegisterPage= React.lazy(()=> import('./pages/Register'));
+const DetailPage= React.lazy(()=> import('./pages/ProductDetail'));
 ReactDOM.render(
   <React.StrictMode>
     <Router>
+    <React.Suspense fallback={<LoadingComponent />}>
       <ThemeContext.Provider value ='darkgrey'>
+        
         <Switch>
-          <Route exact path='/'>
+          <Route exact path="/" component={MainPage} />
+          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/register" component={RegisterPage} />
+          <Route exact path="/productdetail/:id" component={DetailPage} />
+          {/* <Route exact path='/'>
             <Main />
           </Route>
 
@@ -28,7 +39,7 @@ ReactDOM.render(
 
           <Route exact path='/productdetail/:id'>
             <ProductDetail />
-          </Route>
+          </Route> */}
 
           {/* <Route 
             exact 
@@ -50,6 +61,7 @@ ReactDOM.render(
         </Switch>
         
       </ThemeContext.Provider>
+      </React.Suspense>
     </Router>
   </React.StrictMode>,
   document.getElementById('root')
