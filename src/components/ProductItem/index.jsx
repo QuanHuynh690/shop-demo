@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {Link} from 'react-router-dom'
 /*
 1. lấy đc sự kiện click của icon add to cart
@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom'
 */ 
 function ProductItem(props) {
   // console.log(props.image)
-  
+  const [productonclick,setProductonclick]=useState('')
   const onAddToCart = (product) => {
     console.log(product)
     
