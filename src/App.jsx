@@ -20,14 +20,19 @@ function App() {
     }
     )
   }
-  
-  
+ const [propsOnClick,setPropsOnClick]= useState([])
+ const getProductToCart=(elm)=>{
+    let newPropsOnClick=[...propsOnClick,elm]
+    setPropsOnClick(newPropsOnClick)
+    console.log(propsOnClick)
+ }
   return (
 
     <Layout >
       <Content>
-        {sortAZ.map(e =>
-          <ProductItem {...e} />)}
+        {sortAZ.map(elm =>
+          <ProductItem {...elm} imageURL={elm.image} 
+          clickToAdd={getProductToCart} />)}
         {/* {products.map(e=>
             <ProductItem
             imageURL={e.imageURL}

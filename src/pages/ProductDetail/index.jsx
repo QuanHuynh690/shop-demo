@@ -34,7 +34,7 @@ function ProductDetail (props) {
                           <div className="breadcrumb-text text-center">
                             <h1>Our Shop</h1>
                             <ul className="breadcrumb-menu">
-                              <li><a href="index.html">home</a></li>
+                              <li><a href="./">home</a></li>
                               <li><span>shop details</span></li>
                             </ul>
                           </div>

@@ -37,16 +37,16 @@ function Layout(props) {
                         <a href="#">Pages</a>
                         <ul className="submenu">
                           <li>
-                            <a href="./detail.html">Product Detail</a>
+                            <a href="./detail">Product Detail</a>
                           </li>
                           <li>
-                            <a href="./login.html">login</a>
+                            <a href="./login">login</a>
                           </li>
                           <li>
-                            <a href="./register.html">Register</a>
+                            <a href="./register">Register</a>
                           </li>
                           <li>
-                            <a href="./cart.html">Shoping Cart</a>
+                            <a href="./cart">Shoping Cart</a>
                           </li>
                         </ul>
                       </li>

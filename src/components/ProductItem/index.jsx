@@ -9,12 +9,13 @@ import {Link} from 'react-router-dom'
 */ 
 function ProductItem(props) {
   // console.log(props.image)
-  const [productonclick,setProductonclick]=useState('')
-  const onAddToCart = (product) => {
-    console.log(product)
-    
+  
+const onAddToCart = () => {
+  console.log(props)
+  props.clickToAdd(props)
+}
 
-  }
+  
   
   return (
     <div className="col-xl-4 col-lg-6 col-md-6">
@@ -49,6 +50,6 @@ function ProductItem(props) {
       </div>
     </div>
   );
-}
 
+  }
 export default ProductItem;

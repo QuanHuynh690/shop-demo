@@ -1,14 +1,17 @@
 import React from "react";
 
-function Cart(){
+function Cart(props){
+  console.log(props.data);
     return (
         <>
-        <li className="d-shop-cart"><a href="#"><i className="fas fa-shopping-cart" /> <span className="cart-count">3</span></a>
+        <li className="d-shop-cart"><a href="#"><i className="fas fa-shopping-cart" /> <span className="cart-count">{props.data.length}</span></a>
                       <ul className="minicart">
-                        <li>
+                        {props.data.map((elm)=>{
+                          return (
+                        <li key={elm.name}>
                           <div className="cart-img">
                             <a href="#">
-                              <img src="./assets/pro1.jpg" alt="" />
+                              <img src={props.data.imgURL} alt="" />
                             </a>
                           </div>
                           <div className="cart-content">
@@ -16,7 +19,7 @@ function Cart(){
                               <a href="#">Black &amp; White Shoes</a>
                             </h3>
                             <div className="cart-price">
-                              <span className="new">$ 229.9</span>
+                              <span className="new">{props.data.price}</span>
                               <span>
                                 <del>$239.9</del>
                               </span>
@@ -27,8 +30,9 @@ function Cart(){
                               <i className="far fa-trash-alt" />
                             </a>
                           </div>
-                        </li>
-                        <li>
+                        </li>)
+                        })}
+                        {/* <li>
                           <div className="cart-img">
                             <a href="#">
                               <img src="./assets/pro2.jpg" alt="" />
@@ -73,7 +77,7 @@ function Cart(){
                               <i className="far fa-trash-alt" />
                             </a>
                           </div>
-                        </li>
+                        </li> */}
                         <li>
                           <div className="total-price">
                             <span className="f-left">Total:</span>
